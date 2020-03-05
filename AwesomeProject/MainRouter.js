@@ -14,6 +14,7 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
+      backBehavior='none'
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -31,7 +32,7 @@ function MyTabs() {
       })}
       tabBarOptions={{
         activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        inactiveTintColor: 'gray'
       }}>
       <Tab.Screen name="Web" component={WebScreen} />
       <Tab.Screen name="Image" component={ImageScreen} />
