@@ -3,6 +3,9 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import reducerKaKao from "./reduxFolder/ReducerJS"
+import { createStore, applyMiddleware } from 'redux';
+import { Provider, connect } from 'react-redux';
 
 import WebScreen from './screens/web_tab/WebScreen';
 import ImageScreen from './screens/image_tab/ImageScreen';
@@ -10,6 +13,7 @@ import BlogScreen from './screens/blog_tab/BlogScreen';
 import CafeScreen from './screens/cafe_tab/CafeScreen';
 
 const Tab = createBottomTabNavigator();
+const store = createStore(reducerKaKao);
 
 function MyTabs() {
   return (
@@ -42,10 +46,14 @@ function MyTabs() {
   );
 }
 
+console.log("State = ", store.getState());
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
+    </Provider>
   );
 }

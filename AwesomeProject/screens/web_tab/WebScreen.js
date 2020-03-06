@@ -1,11 +1,10 @@
 import React from 'react';
 import { TextInput, SafeAreaView, Text, View, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
-import ListItem from './WebListItem';
 import CommonListItem from './WebCommonListItem';
 import Frisbee from 'frisbee';
-import { DATA } from '../../testData/testData';
 import { API_KEY } from '../../constants'
+import { connect } from 'react-redux';
 
 function WebScreen({ navigation }) {
 
@@ -61,7 +60,7 @@ function WebScreen({ navigation }) {
         let currentData = listData.concat(res.body.documents);
         setLoadData({ loading: false, isRefreshing: false, data: currentData, isEnd: endData, page: pageNumber });
       }
-      console.log("page = ", loadData.page);
+      // console.log("response  = ", res);
       return res.body;
     }
     catch (err) {
@@ -103,12 +102,6 @@ function WebScreen({ navigation }) {
           data={loadData.data}
           renderItem={
             ({ item }) => (
-              // <ListItem
-              //   id={item.url}
-              //   title={item.title}
-              //   selected={!!selected.get(item.url)}
-              //   onSelect={onSelect}
-              // />
               <CommonListItem
                 title={item.title}
                 contents={item.contents} />
@@ -160,4 +153,11 @@ const styles = StyleSheet.create({
   }
 })
 
-export default WebScreen;
+const mapStateToProps = state => {
+  let storedRepositories = state.datas.map();
+  return {
+    datas: storedRepositories
+  };
+};
+export default connect(mapStateToProps)(WebScreen);
+// export default WebScreen;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
 function CommonListItem({ title, contents }) {
@@ -25,4 +26,8 @@ const styles = StyleSheet.create({
   }
 });
 
+CommonListItem.PropTypes = {
+  title: PropTypes.string.isRequired,
+  contents: PropTypes.string.isRequired
+}
 export default CommonListItem;
