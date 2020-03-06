@@ -159,5 +159,5 @@ const mapStateToProps = state => {
     datas: storedRepositories
   };
 };
-export default connect(mapStateToProps)(WebScreen);
-// export default WebScreen;
+// export default connect(mapStateToProps)(WebScreen);
+export default WebScreen;
